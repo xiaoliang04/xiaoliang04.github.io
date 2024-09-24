@@ -1,80 +1,92 @@
-# Gcs-Vno-Jekyll
+# 介绍
 
-基于 Jekyll 的个人博客主题。
+[![Language](https://img.shields.io/badge/Jekyll-Theme-blue)](https://github.com/TMaize/tmaize-blog)
+[![license](https://img.shields.io/github/license/TMaize/tmaize-blog)](https://github.com/TMaize/tmaize-blog)
+[![GitHub stars](https://img.shields.io/github/stars/TMaize/tmaize-blog?style=social)](https://github.com/TMaize/tmaize-blog)
 
-## 样式预览
+一款 jekyll 主题（[GitHub 地址](https://github.com/TMaize/tmaize-blog)），简洁纯净(主题资源请求<20KB)，未引入任何框架，秒开页面，支持自适应，支持全文检索，支持夜间模式
 
-![](http://ww4.sinaimg.cn/large/005Xtdi2jw1f9pvpcwm0rj313y0maade.jpg)
+你可以到[TMaize Blog](https://blog.tmaize.net/)查看主题效果 ，欢迎添加友链
 
-### [点击这里查看实际部署效果](http://www.gcssloop.com/)
+## 感谢
 
-## 使用方法
+[JetBrains](https://www.jetbrains.com/?from=tmaize-blog) 免费提供的开发工具[![JetBrains](./static/img/jetbrains.svg)](https://www.jetbrains.com/?from=tmaize-blog)
 
-1.如果是使用 GitHub Pages 则直接复制该文件到对应仓库的对应分支即可，发布完成后，过几分钟就能在对应的网址看到效果了。
+[夜间模式代码高亮配色](https://github.com/mgyongyosi/OneDarkJekyll)
 
-2.如果需要本地调试预览，则需要在本机安装 Ruby，并配置好 Jekyll 环境，环境配置方式自行搜索。
+# 本地运行
 
-3.文章应放在 `_posts` 目录下，并按照 `year-month-day-filename.md` 的格式命名。
+一般提交到 github 过个几十秒就可以看到效果，如果你需要对在本地查看效果需要安装 ruby 环境和依赖
 
-4.配置文件为 `_config.yml`， 这个就不用多说了吧。
+windows 下推荐在 wsl 下装 ruby，直接一句`apt install build-essential ruby ruby-dev` 就行了
 
-## 可选功能
-
-#### 1.本地调试方法
-
-本机环境配置完成后，在命令行中进入该文件夹根目录，输入 `jekyll server` 稍等片刻就能在 <http://localhost:4000> 看到效果了。
-
-#### 2.添加文章评论
-
-到 [多说官网](http://duoshuo.com/) 申请一个账号，之后将自动生成的代码复制到 `/_includes/comments.html` 文件中即可。
-
-注意修改自动生成代码中的url，多说中会有提示，示例写法：
-
-``` html
- <div id="comments" class="ds-thread" data-thread-key="{{page.id}}" data-title="{{page.title}}" data-url="{{site.url}}{{page.url}}"></div>
+```bash
+# gem sources --remove https://rubygems.org/
+# gem sources -a https://mirrors.tuna.tsinghua.edu.cn/rubygems/
+# gem sources -l
+# gem sources --clear-all
+# gem sources --update
+gem install bundler
+# bundle config mirror.https://rubygems.org https://mirrors.tuna.tsinghua.edu.cn/rubygems
+# bundle config list
+bundle install
 ```
 
-#### 3.博文置顶
+通过下面命令启动/编译项目
 
-在文章最上面添加 `istop: true` 属性会让该博文置顶显示，但该文章原始位置依旧会显示，这就意味址如果你置顶了第一页的文章，你会在第一页看到两篇文章。
-
-如果想要修改博文置顶的逻辑可以在 `index.html` 文件中修改。
-
-#### 4.站内搜索
-
-目录页面的站内搜索实际上是利用了 Google 搜索的一个特性，如果想要删除或者修改都可以，文件中有注释。
-
-不要问我为什么不用百度，因为百度收录速度太慢了，经常收录不全。 ╮ (￣ 3￣) ╭
-
-#### 5.站点地图
-
-站点地图会自动生成，地址为 `域名/sitemap.xml`，建议将该地址提交给搜索引擎，方便引擎快速抓取收录你的页面。
-
-#### 6.多链接访问
-
-有时修改文章标题，分类会使原始链接丢失，可以使用 `redirect_from` 属性将原始链接重定向到新链接地址。
-
-``` yml
-redirect_from:
-  - /1970/01/about/
+```bash
+bundle exec jekyll serve --watch --host=127.0.0.1 --port=8080
+bundle exec jekyll build --destination=dist
 ```
 
-#### 7.SEO优化
+如果需要替换代码高亮的样式可以通过下面的命令生成 css
 
-为了增加你博文被搜索到的概率，可以考虑使用 SEO 优化，我定义了两个属性，`keywords` 和 `excerpt` ：
-
-``` yml
-keywords: GcsSloop, gcssloop
-excerpt: 我是 GcsSloop， 一名生活在2.5次元的魔法师，平时研究一下魔法，做一些魔法卷轴，也会把一些研究成果贡献出来，以帮助新入门的魔法师更快速的成长为高级魔法师。点击此处查看我公布的魔法研究成果。
+```bash
+rougify help style
+rougify style github > highlighting.css
 ```
 
-**关于文章开头常用的属性示例可以参考 `1970-01-01-about.md` 文件。**
+# 项目配置
 
+1. 如果使用自己的域名，`CNAME`文件里的内容请换成你自己的域名，然后 CNAME 解析到`用户名.github.com`
 
-## Licence
+2. 如果使用 GitHub 的的域名，请删除`CNAME`文件，然后把你的项目修改为`用户名.github.io`
 
-本主题是基于 onevcat 大神的 [OneV-s-Den](https://github.com/onevcat/OneV-s-Den) 修改而来的，非常感谢 onevcat 以及之前作者作出的贡献。
+3. 修改`pages/about.md`中关于我的内容
 
-Great thanks to [Dale Anthony](https://github.com/daleanthony) and his [Uno](https://github.com/daleanthony/uno). Vno Jekyll is based on Uno, and contains a lot of modification on page layout, animation, font and some more things I can not remember. Vno Jekyll is followed with Uno and be licensed as [Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/). See the link for more information.
+4. 修改`_config.yml`文件，具体作用请参考注释
 
+5. 清空`posts`和`_posts`目录下所有文件，注意是清空，不是删除这两个目录
 
+6. 网站的 logo 和 favicon 放在了`static/img/`下，替换即可，大小无所谓，图片比例最好是 1:1
+
+7. 如果你是把项目 fork 过去的，想要删除我的提交记录可以使用下面的命令
+
+   ```
+   git checkout --orphan temp
+   git add . && git commit -m init
+   git branch -D master
+   git branch -m temp master
+   git push --force
+   ```
+
+# 使用
+
+文章放在`_posts`目录下，命名为`yyyy-MM-dd-xxxx-xxxx.md`，内容格式如下
+
+```yaml
+---
+layout: mypost
+title: 标题
+categories: [分类1, 分类2]
+---
+文章内容，Markdown格式
+```
+
+文章资源放在`posts`目录，如文章文件名是`2019-05-01-theme-usage.md`，则该篇文章的资源需要放在`posts/2019/05/01`下，在文章使用时直接引用即可。当然了，写作的时候会提示资源不存在忽略即可
+
+```md
+![这是图片](xxx.png)
+
+[xxx.zip 下载](xxx.zip)
+```
