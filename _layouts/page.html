@@ -1,16 +1,20 @@
 ---
 layout: default
 ---
-<main class="content" role="main">
-    <article class="post single-post" itemscope itemtype="http://schema.org/BlogPosting">
-        <header class="post-header short-diver">
-            <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>           
-        </header>
-        <section class="post-content short-diver" itemprop="articleBody">
-            {{content}}
-        </section>
-    </article>
-</main>
 
-{% include photoswipe.html %}
-{% include post_scripts.html %}
+{% include lang.html %}
+
+<article class="px-1">
+  {% if page.layout == 'page' or page.collection == 'tabs' %}
+    {% assign tab_key = page.title | downcase %}
+    {% assign title = site.data.locales[lang].tabs[tab_key] | default: page.title %}
+    <h1 class="dynamic-title">
+      {{ title }}
+    </h1>
+    <div class="content">
+      {{ content }}
+    </div>
+  {% else %}
+    {{ content }}
+  {% endif %}
+</article>
