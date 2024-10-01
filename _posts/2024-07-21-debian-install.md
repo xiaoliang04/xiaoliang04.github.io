@@ -1,7 +1,7 @@
 ---
 layout: mypost
 title: Debian 12 安装记录
-categories: [小梁1]
+categories: [xiaoliang]
 ---
 
 记录下 Debian 12 安装过程
