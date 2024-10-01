@@ -14,3 +14,5 @@ title: 关于我
 
 
 ![测试](https://liangx.work/assets/test.png)
+
+![1727788790114](D:\_workspace\xiaoliang04.github.io\assets\1727788790114.jpg)
