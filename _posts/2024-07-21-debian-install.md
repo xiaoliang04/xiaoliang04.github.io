@@ -12,7 +12,7 @@ https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.6.0-amd64-D
 
 ## 配置软件源
 
-安装完成后默认镜像源是 CD ROM 需要调整下
+小梁1
 
 ```
 nano /etc/apt/sources.list
