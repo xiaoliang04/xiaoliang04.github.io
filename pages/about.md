@@ -15,5 +15,4 @@ title: 关于我
 
 ![测试](https://liangx.work/assets/test.png)
 
-![小梁](https://liangx.work/assets/1727789582522.png)
-
+![1727789582522](D:\_workspace\xiaoliang04.github.io\assets\1727789582522.png)
