@@ -1,7 +1,7 @@
 ---
 layout: mypost
 title: Debian 12 安装记录
-categories: [Linux]
+categories: [小梁1]
 ---
 
 记录下 Debian 12 安装过程
@@ -12,7 +12,7 @@ https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.6.0-amd64-D
 
 ## 配置软件源
 
-小梁1
+小梁111111111
 
 ```
 nano /etc/apt/sources.list
