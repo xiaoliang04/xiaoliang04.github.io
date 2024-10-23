@@ -1,180 +1,187 @@
 ---
 layout: mypost
-title: Debian 12 安装记录
+title: 第一个shader helloworld
 categories: [xiaoliang]
 ---
 
-记录下 Debian 12 安装过程
+记录一下第一个shader
+
+------
+
+# unity shader 初体验：简单的shader实例
+
+## 简介
+
+跟着b站ub主庄懂，了解了unity shader的一些基础渲染知识。这是我学习unity shader编程时第一个尝试，通过这个例子，我希望能够掌握Unity shader的基本结构和工作原理。虽然功能非常基础，但它为我后续的shader开发奠定了基础/
+
+再这篇博客中，我将分享这个简单的shader，并逐步解释它的每一部分，希望能够帮助那些刚开始接触unity shader的朋友们/
+
+## 内容
+
+### shader概览
+
+简单解释一下shader的作用，shader（着色器）是计算机图形学中的重要组成部分，它辅助控制物体的渲染外观，决定物体的颜色、光照效果以及材质反应等等。在游戏开发中，shader常被用于优化视觉效果，并让物体在不同的光照和场景下表现得更真实。
+
+我编写的这个shader目标非常明确：让物体显示出固定的颜色，尽管它并没有复杂的光照处理，但是通过它可以了解shader的核心结构。
+
+------
+
+### 完整代码示例
+
+以下是我根据教程编写的第一个unity shader，命名为“shader/helloworld"。这个shader使用unity的内置函数，来处理顶点位置和法线，并最终为物体着色。
 
 ```
-https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.6.0-amd64-DVD-1.iso
-```
-
-## 配置软件源
-
-小梁111111111
-
-```
-nano /etc/apt/sources.list
-```
-
-```
-# https://mirrors.tuna.tsinghua.edu.cn/help/debian/
-
-deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
-
-deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware
-
-deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware
-
-deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware
-```
-
-镜像配置好后更新下系统，如果更新时提示 SSL 错误，可以先将 `sources.list` 中的 https 改为 http，升级完成后再改回去
-
-```
-apt update && apt upgrade
-```
-
-## 配置 Vim
-
-默认自带是 vim 并不是完整版的，使用上有好多问题，需要重新安装
-
-```
-apt remove vim-common
-apt install vim
-```
-
-调整 vim 配置 `~/.vimrc`
-
-```
-syntax off
-
-set number
-set showmode
-set showcmd
-set t_Co=256
-set cursorline
-set nowrap
-set noswapfile
-
-
-set encoding=utf-8
-set langmenu=zh_CN.UTF-8
-language message zh_CN.UTF-8
-set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-```
-
-## 安装 Git
-
-```
-apt install git
-git config --global user.name ming
-git config --global user.email admin@ming.net
-git config --global --list
-```
-
-## 安装 ZSH
-
-```
-apt install zsh
-wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-sh install.sh
-```
-
-调整 `.zshrc`
-
-```
-plugins=(git)
-
-# 解决 git 分支不显示
-zstyle ':omz:alpha:lib:git' async-prompt no
-
-# 关闭更新
-zstyle ':omz:update' mode disabled
-```
-
-## 安装 Ruby
-
-```
-apt install ruby ruby-dev
-```
-
-## 安装 Docker
-
-docker 官网无法访问了，这里使用清华的镜像源
-
-```
-for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt-get remove $pkg; done
-
-apt-get update
-apt-get install ca-certificates curl gnupg
-install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-chmod a+r /etc/apt/keyrings/docker.gpg
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/debian \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-apt-get update
-apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-```
-
-最新版本的 docker-compose 是通过 `docker compose` 使用，如果想使用 `docker-compose` 可以将其暴露出来
-
-```
-export PATH=$PATH:/usr/libexec/docker/cli-plugins
-```
-
-## Docker 镜像加速
-
-[国内DockerHub镜像加速器还有哪些可用？(2024年7月18日)](https://www.wangdu.site/course/2109.html)
-
-一些可用的镜像地址：
-
-- https://docker.beitai.cc
-- https://dockerpull.com
-- https://dockerproxy.cn
-- https://dockerhub.icu
-
-使用方式 1：
-
-```sh
-# docker pull nginx:latest
-docker pull dockerpull.com/library/nginx:latest
-docker tag dockerpull.com/library/nginx:latest nginx::latest
-docker rmi dockerpull.com/library/nginx:latest
-```
-
-使用方式 2：
-
-```
-tee /etc/docker/daemon.json <<EOF
-{
-    "registry-mirrors": [
-      "https://docker.beitai.cc",
-      "https://dockerpull.com",
-      "https://dockerproxy.cn",
-      "https://dockerhub.icu"
-    ]
+Shader "shader/helloworld" {
+    Properties {
+    }
+    SubShader {
+        Tags {
+            "RenderType"="Opaque"
+        }
+        Pass {
+            Name "FORWARD"
+            Tags {
+                "LightMode"="ForwardBase"
+            }
+            
+            
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "UnityCG.cginc"
+            #include "UnityPBSLighting.cginc"
+            #include "UnityStandardBRDF.cginc"
+            #pragma multi_compile_fwdbase_fullshadows
+            #pragma target 3.0
+            // 输入结构
+            struct VertexInput {
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+            };
+            // 输出结构
+            struct VertexOutput {
+                float4 pos : SV_POSITION;     //由模型顶点信息换算而来的顶点屏幕位置
+                float3 normalDir : TEXCOORD;  //由模型法线信息换算而来的世界空间法线信息
+            };
+             // 输入结构>>>顶点Shader>>>输出结构
+            VertexOutput vert (VertexInput v) {
+                VertexOutput o = (VertexOutput)0;                               // 新建一个输出结构
+                o.normalDir = UnityObjectToWorldNormal(v.normal);               // 变换法线信息 并将其塞给输出结构  
+                o.pos = UnityObjectToClipPos( v.vertex );                       // 变换顶点信息 并将其塞给输出结构
+                return o;                                                       // 变换法线信息 并将其塞给输出结构
+            }
+             // 输出结构>>>像素
+            float4 frag(VertexOutput i) : COLOR {
+                return float4(0.5,0.5,1,1.0);                                 //输出最终颜色   
+            }
+            ENDCG
+        }
+    }
+    FallBack "Diffuse"
 }
-EOF
-
-systemctl daemon-reload
-systemctl restart docker
-```
-
-## Virtualbox 增强功能
 
 ```
-mkdir cdrom
-mount /dev/cdrom cdrom
-apt install build-essential dkms
-sh ./VBoxLinuxAdditions.run --nox11
+
+------
+
+### 代码详解
+
+**1.Properties**
+
 ```
+Properties {
+}
+
+```
+
+在这个unity shader中，`properties`用于定义Shader参数，比如颜色、贴图等。在这个shader中，我并没有定义任何参数，因为这是一个最基础的shader，所以它是空的。
+
+**2.SubShader和Tags**
+
+```
+SubShader {
+    Tags {
+        "RenderType"="Opaque"
+    }
+
+```
+
+`Subshader`是Shader的核心部分，它决定了如何绘制物体。`Tags`中的`RenderType=Opaque`表示这个物体是不透明的。这是最常见的渲染类型。
+
+**3.Pass和LightMode**
+
+```
+Pass {
+    Name "FORWARD"
+    Tags {
+        "LightMode"="ForwardBase"
+    }
+
+```
+
+`pass`指定了渲染的阶段，一个shader可以有多个pass来完成不同的效果。这里的`LightMode`设置为`Forwardbase`，意味着使用前向渲染模式。这是unity中的一种常用的光照计算模式。
+
+**4.CGPROGRAM部分**
+
+```
+CGPROGRAM
+    #pragma vertex vert
+    #pragma fragment frag
+    #include "UnityCG.cginc"
+    #include "UnityPBSLighting.cginc"
+    #include "UnityStandardBRDF.cginc"
+    #pragma multi_compile_fwdbase_fullshadows
+    #pragma target 3.0
+
+```
+
+`CGPROGRAM`块是我们编写实际着色器代码的地方。这里指定了两个主要函数：`vert`是顶点着色器，`frag`是像素着色器。
+
+**·**`#pragma vertex vert`:指明哪个函数处理顶点数据。
+
+·`#pragma fragment farg`：指明哪个函数处理像素数据。
+
+·`#include`:导入Unity的标准库函数，这些库函数包含了光照、矩阵变换等功能。
+
+·`#pragma target 3.0`:指定了shader的目标平台，这里使用的是shader model 3.0。
+
+**5.顶点着色器 vert**
+
+```
+VertexOutput vert (VertexInput v) {
+    VertexOutput o = (VertexOutput)0;
+    o.normalDir = UnityObjectToWorldNormal(v.normal);  
+    o.pos = UnityObjectToClipPos( v.vertex );
+    return o;
+}
+
+```
+
+顶点着色器`vert`接收输入结构`vertexInput`，包含顶点位置和法线。主要有两个步骤：
+
+·将法线从模型空间转换到世界空间，存储在`o.normalDir`中，`o.normalDir`存储的是每个顶点的世界空间法线。
+
+·使用unity的`unityobjecttoclipPos`函数，将顶点位置转换到裁剪信息，并将结果存储在`o.pos`中。
+
+**6.像素着色器 farg**
+
+```
+float4 frag(VertexOutput i) : COLOR {
+    return float4(1.0, 0.5, 0.5, 1.0);
+}
+
+```
+
+片段着色器`frag`接收顶点着色器的输出作为输入。这里返回了一个固定的颜色值——浅红色（`float4（1.0，0.5，0.5，1.0）`），该颜色会应用到物体上。
+
+![shader](https://liangx.work/assets/helloworld.png)
+
+### 总结
+
+通过这个简单的shader，我学习并掌握了unity shader 的基础结构，包括如何处理顶点和片段，以及基本的光照效果和颜色输出。在实际应用中，shader只会更复杂，包括更多的动态效果、光照处理以及贴图处理。
+
+尽管这是一个非常基础的shader，但是通过它我认识到了shader的大致结构，每个模块的意义。
+
+------
+
+此次博客是作者第一次写，在chatGPT的帮助下成功完成书写，希望我自己以后会有更多的技术分享博客。
