@@ -9,10 +9,10 @@ title: 关于我
 
 测试一张图片
 
-![123](https://liangx.work/posts/2015/01/01/001.jpg)
+![1234](https://liangx.work/assets/4e399dcc763ab034bc4f12ba0a45adc8.mp4)
 
 
 
-![测试](https://liangx.work/assets/test.png)
+
 
 ![再](https://liangx.work/assets/1727791731777.png)
