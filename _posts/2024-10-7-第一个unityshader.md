@@ -1,7 +1,7 @@
 ---
 layout: mypost
 title: 第一个shader helloworld
-categories:xiaoliang
+categories:[xiaoliang]
 ---
 
 记录一下第一个shader
