@@ -1,7 +1,7 @@
 ---
-layout: myposet
+layout: mypost
 title: 第一个shader helloworld
-categories: shader
+categories:xiaoliang
 ---
 
 记录一下第一个shader
@@ -26,9 +26,13 @@ categories: shader
 
 ## 基础渲染过程图
 
+![再](https://liangx.work/assets/渲染管线.png)
+
 ------
 
 向量含义
+
+![再](https://liangx.work/assets/向量.png)
 
 ------
 
