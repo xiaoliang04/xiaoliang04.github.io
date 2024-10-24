@@ -26,13 +26,9 @@ categories: [xiaoliang]
 
 ## 基础渲染过程图
 
-![渲染过程](https://liangx.work/assets/渲染管线.png)
-
 ------
 
 向量含义
-
-![向量](https://liangx.work/assets/向量.png)
 
 ------
 
