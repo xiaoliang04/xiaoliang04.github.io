@@ -1,7 +1,7 @@
 ---
 layout: myposet
 title: 第一个shader helloworld
-categories: [xiaoliang]
+categories: shader
 ---
 
 记录一下第一个shader
