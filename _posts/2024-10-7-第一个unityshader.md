@@ -1,5 +1,5 @@
 ---
-layout: mypost
+layout: shader
 title: 第一个shader helloworld
 categories: [xiaoliang]
 ---
@@ -14,7 +14,7 @@ categories: [xiaoliang]
 
 跟着b站ub主庄懂，了解了unity shader的一些基础渲染知识。这是我学习unity shader编程时第一个尝试，通过这个例子，我希望能够掌握Unity shader的基本结构和工作原理。虽然功能非常基础，但它为我后续的shader开发奠定了基础/
 
-再这篇博客中，我将分享这个简单的shader，并逐步解释它的每一部分，希望能够帮助那些刚开始接触unity shader的朋友们/
+再这篇博客中，我将分享这个简单的shader，并逐步解释它的每一部分，希望能够帮助那些刚开始接触unity shader的朋友们。
 
 ## 内容
 
@@ -23,6 +23,16 @@ categories: [xiaoliang]
 简单解释一下shader的作用，shader（着色器）是计算机图形学中的重要组成部分，它辅助控制物体的渲染外观，决定物体的颜色、光照效果以及材质反应等等。在游戏开发中，shader常被用于优化视觉效果，并让物体在不同的光照和场景下表现得更真实。
 
 我编写的这个shader目标非常明确：让物体显示出固定的颜色，尽管它并没有复杂的光照处理，但是通过它可以了解shader的核心结构。
+
+## 基础渲染过程图
+
+![渲染过程](https://liangx.work/assets/渲染管线.png)
+
+------
+
+向量含义
+
+![向量](https://liangx.work/assets/向量.png)
 
 ------
 
