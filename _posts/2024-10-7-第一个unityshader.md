@@ -1,5 +1,5 @@
 ---
-layout: shader
+layout: myposet
 title: 第一个shader helloworld
 categories: [xiaoliang]
 ---
