@@ -7,12 +7,7 @@ title: 关于我
 >
 > 小梁1
 
-测试一张图片
+个人简历
 
-![1234](https://liangx.work/assets/4e399dcc763ab034bc4f12ba0a45adc8.mp4)
+[点击查看梁鑫个人简历](https://liangx.work/assets/梁鑫简历.pdf)
 
-
-
-
-
-![再](https://liangx.work/assets/1727791731777.png)
