@@ -34,8 +34,8 @@ menu:
     url: /
   - title: 归类
     url: /pages/categories.html
-  - title: 搜索
-    url: /pages/search.html
+  - title: b站
+    url: https://space.bilibili.com/317051035?spm_id_from=333.1007.0.0
   - title: 友链
     url: /pages/links.html
   - title: 留言
