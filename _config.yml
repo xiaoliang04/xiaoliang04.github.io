@@ -36,10 +36,6 @@ menu:
     url: /pages/categories.html
   - title: b站
     url: https://space.bilibili.com/317051035?spm_id_from=333.1007.0.0
-  - title: 友链
-    url: /pages/links.html
-  - title: 留言
-    url: /pages/chat.html
   - title: 关于
     url: /pages/about.html
 
